@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>TODO List</title>
+</head>
+
+<body>
+	<div id="test1"></div>
+	
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
+	
+
+	<script type="text/babel">
+
+		class List extends React.Component {
+			constructor(props){
+				super(props);
+
+				this.state = {
+					todo_list : props.todo_list
+				}
+			}
+
+			render() {
+				return (
+					<div>
+						<ul> {
+							this.state.todo_list.map(
+								(todo, index) => {
+									return <li>{todo}</li>;
+								}
+							)
+						}</ul>
+					</div>
+				);
+			}
+		}
+
+		List.protoTypes = {
+			todo_list : PropTypes.array.isRequired
+		}
+
+		class Add extends React.Component {
+			constructor(props) {
+				super(props);
+
+				this.state = {
+					num : this.props.todo_num,
+					addCallback : this.props.addCallback
+				}
+
+				this.add = this.add.bind(this);
+			}
+
+			add() {
+				// how to modify the state of the parent node?
+				const {addCallback} = this.state;
+				addCallback(this.input.value);
+
+				let {num} = this.state;
+				num += 1;
+				this.setState({num});
+
+				this.input.value = "";
+			}
+
+			render() {
+				return (
+					<div>
+						<input type="text" ref={input => this.input=input}/>
+						<button onClick={this.add}>add #{this.state.num}</button>
+					</div>
+				);
+			}
+		}
+
+		// data storage
+		class App extends React.Component{
+
+			constructor(props){
+				super(props);
+
+				this.addTodo = this.addTodo.bind(this);
+
+				this.state = {
+					todo_list : []
+				};
+			}
+
+			addTodo (todo) {
+				const {todo_list} = this.state;
+				todo_list.unshift(todo);
+
+				// update the state and also the UI
+				this.setState({todo_list});
+			}
+
+			// rewirte
+			render() {
+				return (
+					<div>
+						<h1>Simple TODO List</h1>
+						<Add addCallback={this.addTodo} todo_num={this.state.todo_list.length+1}/>
+						<List todo_list={this.state.todo_list}/>
+					</div>
+				);
+			}
+		}
+
+		// 2. render component label
+		ReactDOM.render(<App />, document.getElementById("test1"));
+
+	</script>
+
+
+</body>

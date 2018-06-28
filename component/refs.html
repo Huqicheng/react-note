@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>hello world</title>
+</head>
+
+<body>
+	<div id="test1"></div>
+	
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
+	
+
+	<script type="text/babel">
+		//  ES6 Method (as a component class)
+		// 1. define components
+		class App extends React.Component{
+			constructor(props){
+				super(props);
+
+				this.handleClick = this.handleClick.bind(this);
+				this.handleBlur = this.handleBlur.bind(this);
+			}
+
+			handleClick() {
+				console.log(this.input.value);
+				
+			}
+
+			handleBlur(event) {
+				alert(event.target.value)
+			}
+
+			// rewirte
+			render() {
+				// using ref to bind the class attribute with this label
+				return (
+					<div>
+						<input type="text" ref={ input => this.input = input }/>
+						<button onClick={this.handleClick}>Give me some hints!!</button>
+						<input type="text" placeholder="lost focus" onBlur={this.handleBlur}/>
+					</div>
+				);
+			}
+		}
+
+		// 2. render component label
+		ReactDOM.render(<App />, document.getElementById("test1"));
+
+	</script>
+
+
+</body>

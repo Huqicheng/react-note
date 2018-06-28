@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>TODO List</title>
+</head>
+
+<body>
+	<div id="test1"></div>
+	
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
+	
+
+	<script type="text/babel">
+
+		class LoginForm extends React.Component {
+
+			constructor(props) {
+				super(props);
+
+				// initiate state
+				this.state = {
+					pwd: ""
+				}
+
+				this.handleSubmit = this.handleSubmit.bind(this);
+				this.handleChange = this.handleChange.bind(this);
+			}
+
+			handleSubmit(event) {
+				event.preventDefault();
+
+				
+
+
+			}
+
+			handleChange(event) {
+				// update
+				let {pwd} = event.target.value;
+				this.setState({pwd});
+			}
+
+
+			render () {
+				return (
+						<form action="/test" onSubmit={this.handleSubmit}>
+							username: <input type="text" ref={input => this.username = input}/>
+							password: <input type="password" value={this.state.pwd} onChange={this.handleChange}/>
+							<input type="submit" value="login"/>
+						</form>
+					);
+			}
+		}
+
+		
+
+		// 2. render component label
+		ReactDOM.render(<LoginForm />, document.getElementById("test1"));
+
+	</script>
+
+
+</body>

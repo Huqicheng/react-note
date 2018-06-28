@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>hello world</title>
+</head>
+
+<body>
+	<div id="test1"></div>
+	
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
+	
+
+	<script type="text/babel">
+		//  ES6 Method (as a component class)
+		// 1. define components
+		class Person extends React.Component{
+			constructor(props){
+				super(props);
+				
+
+				this.props.gender = props.gender;
+				this.props.name = props.name;
+				this.props.age = props.age;
+
+			}
+
+			// rewirte
+			render() {
+				// read the state
+				return (
+					<ul>
+						<li>name: {this.props.name}</li>
+						<li>age: {this.props.age}</li>
+						<li>gender: {this.props.gender}</li>
+					</ul>
+				);
+			}
+		}
+
+		// set default properties
+		Person.defaultProps = {
+			gender : 'male' // gender is defaulted as male
+		}
+
+		// required
+		Person.propTypes = {
+			name: PropTypes.string.isRequired,
+			age: PropTypes.number
+		}
+
+		// 2. render component label
+		ReactDOM.render(<Person />, document.getElementById("test1"));
+
+	</script>
+
+
+</body>

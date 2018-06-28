@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>hello world</title>
+</head>
+
+<body>
+	<div id="test1"></div>
+	
+	
+
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+	
+
+	<script type="text/babel">
+		//  ES6 Method (as a component class)
+		// 1. define components
+		class Like extends React.Component{
+			constructor(props){
+				super(props);
+				// initiate the state
+				this.state = {
+					label : false
+ 				}
+
+ 				// bind tuggle method with the Component class
+ 				this.tuggle = this.tuggle.bind(this);
+
+			}
+
+			// As default, 'this' is not the object of Component, actually 'undefined'
+			// so identify it as Component
+			tuggle() {
+				let label = !this.state.label;
+				this.setState({label})
+			}
+
+			// rewirte
+			render() {
+				// read the state
+				const {label} = this.state;
+				return <h2 onClick={this.tuggle}>{label?"true":"false"}</h2>;
+			}
+		}
+		// 2. render component label
+		ReactDOM.render(<Like />, document.getElementById("test1"));
+
+	</script>
+
+
+</body>

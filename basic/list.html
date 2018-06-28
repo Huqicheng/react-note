@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>hello world</title>
+</head>
+
+<body>
+	<div id="list"></div>
+	
+
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+	<script type="text/babel">
+		const list = ["1","2","3"];
+
+		const vDom = (
+				<ul>
+				{
+					list.map((name,index) => {
+						return <li key= {index}> {name} </li>;
+					})
+				}
+				</ul>
+			)
+
+		ReactDOM.render(vDom, document.getElementById("list"));
+	</script>
+
+	
+</body>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>TODO List</title>
+</head>
+
+<body>
+	<div id="test1"></div>
+	
+	<script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/prop-types/15.6.1/prop-types.js"></script>
+	
+
+	<script type="text/babel">
+
+		class LifeCycle extends React.Component {
+
+			constructor (props) {
+				super(props);
+
+				this.state = {
+					opacity : 1
+				};
+
+				this.dispose = this.dispose.bind(this);
+			}
+
+
+			// start doing mount after rendering
+			componentDidMount() {
+				this.intervalId = setInterval(
+					function(){
+						console.log("xixi");
+						let {opacity} = this.state;
+						opacity -= 0.1;
+						
+						if (opacity <= 0) {
+							opacity = 1;
+						}
+
+						this.setState({opacity});
+					}.bind(this)
+					, 100)
+				;
+			}
+
+			componentWillUnmount() {
+				clearInterval(this.intervalId);
+			}
+			dispose() {
+				// if there's a timer running in the component, we should clear the timer first
+				ReactDOM.unmountComponentAtNode(document.getElementById("test1"));
+			}
+
+			render () {
+				return (
+						<div>
+							<h2 style={{opacity : this.state.opacity}}>{this.props.msg}</h2>
+							<button onClick={this.dispose}>{"Let's go"}</button>
+						</div>
+					);
+			}
+		}
+
+		// 2. render component label
+		ReactDOM.render(<LifeCycle msg="xixika"/>, document.getElementById("test1"));
+
+	</script>
+
+
+</body>
