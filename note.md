@@ -11,7 +11,7 @@
 ## 2. 生命周期
 
 #### (1) 生命周期图
-![生命周期](https://www.google.ca/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiTz6fOkPXbAhWE5oMKHcxZAIEQjRx6BAgBEAU&url=http%3A%2F%2Fblog.51cto.com%2Fxhtml%2F1906392&psig=AOvVaw3qznbsxxEhdqz8eS0MaZT_&ust=1530233082708295)
+![生命周期](https://blogname.github.io/img/ajs-life.png)
 
 #### (2) 一些说明
 初始化阶段:<br>
